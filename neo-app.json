@@ -1,0 +1,74 @@
+{
+	"welcomeFile": "/webapp/index.html",
+	"routes": [{
+		"path": "/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/webapp/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/webapp/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Test Resources"
+	}, {
+		"path": "/destinations/WT_S4HC",
+		"target": {
+			"type": "destination",
+			"name": "S4HANACLOUD_BASIC",
+			"entryPath": "/sap/opu/odata/sap"
+		},
+		"description": "WT OData Service"
+	}, {
+		"path": "/destinations/APLEXHANA",
+		"target": {
+			"type": "destination",
+			"name": "APLEXHANAODATA"
+		},
+		"description": "WT HANA OData Service"
+	}, {
+		"path": "/services/userapi",
+		"target": {
+			"type": "service",
+			"name": "userapi"
+		}
+	}, {
+		"path": "bpmworkflowruntime",
+		"target": {
+			"type": "destination",
+			"name": "bpmworkflowruntime",
+			"entryPath": "/workflow-service"
+		},
+		"description": "Workflow Service Runtime"
+	},{
+		"path": "/destinations/Print",
+		"target": {
+			"type": "destination",
+			"name": "Print"
+		},
+		"description": "SAPCloud OData Service"
+	}],
+	"sendWelcomeFileRedirect": true,
+	"headerWhiteList": ["BusinessObjectTypeName", "LinkedSAPObjectKey"]
+}

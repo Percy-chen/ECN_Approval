@@ -1,0 +1,279 @@
+<mvc:View controllerName="ECN.ECN_Approval.controller.ECN_Submit" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:unified="sap.ui.unified" xmlns:ux="sap.uxap">
+	<App id="app">
+		<Page id="page" title="工程變更通告單">
+			<content>
+				<SearchField id="SECRNO" search="onSearchECRINFO" width="100%" placeholder="请输入ECR编号"></SearchField>
+				<f:Form editable="true">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanL="3" labelSpanM="3" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer>
+							<f:formElements>
+								<f:FormElement>
+									<f:fields>
+										<l:HorizontalLayout>
+											<Text text="ECR编号:" width="6em" textAlign="Begin"/>
+											<Text id="ECRNO" text="{/ECRData/ECRNO}" width="30em"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="填單日期:" width="6em" textAlign="Begin"/>
+											<Text id="FORMDATE" text="{path:'/ECRData/FORMDATE',formatter:'.formatter.date'}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="所屬部門:" width="6em" textAlign="Begin"/>
+											<Text id="DEPARTMENT" text="{/ECRData/DEPARTMENT}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="填表人:" width="6em" textAlign="Begin"/>
+											<Text id="WRITER" text="{/ECRData/WRITER}"/>
+										</l:HorizontalLayout>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement>
+									<f:fields>
+										<l:HorizontalLayout>
+											<Text text="ECN编号:" width="6em" textAlign="Begin"/>
+											<Text id="ECNNO" text="{/ECRData/ECNNO}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="申請人:" width="6em" textAlign="Begin"/>
+											<Text id="REQUESTER" text="{/ECRData/REQUESTER}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="Part/Model:" width="6em" textAlign="Begin"/>
+											<Text id="MODELNO" text="{/ECRData/MODELNO}"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="M.B:" width="6em" textAlign="Begin"/>
+											<Text id="MB" text="{/ECRData/MB}"/>
+										</l:HorizontalLayout>
+									</f:fields>
+								</f:FormElement>
+								
+								<f:FormElement>
+									<f:fields>
+										<l:HorizontalLayout>
+											<Text text="ECN申請人:" width="6em" textAlign="Begin"/>
+											<Text id="ECNACCOUNT" text="{/LOGIN/ACCOUNT}"/>
+										</l:HorizontalLayout>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+				<l:VerticalLayout class="sapUiContentPadding" width="100%" enabled="true">
+					<Text text="變更原因" class="sapUiTinyMarginTop"/>
+					<TextArea id="CHANGEREASON" value="{/ECRData/CHANGEREASON}" maxLength="200" width="100%" rows="4"/>
+					<Text text="建議方式" class="sapUiTinyMarginTop"/>
+					<TextArea id="ADVISE" maxLength="200" width="100%" value="{/ECRData/ADVISE}" rows="4"/>
+					<Text text="未變更之後影響" class="sapUiTinyMarginTop"/>
+					<TextArea id="NOCHANGEIMPACT" value="{/ECRData/NOCHANGEIMPACT}" maxLength="200" width="100%" rows="4"/>
+					<!--<Text text="協辦工程師" class="sapUiTinyMarginTop"/>
+					<TextArea value="{/ECRData/SECONDENGINEER}" maxLength="40" width="100%"/>-->
+				</l:VerticalLayout>
+				<f:Form editable="true" title="物料移動情形">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanL="3" labelSpanM="3" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer>
+							<f:formElements>
+								<f:FormElement>
+									<f:fields>
+										<l:HorizontalLayout>
+											<Text text="組件料號:" width="6em" textAlign="Begin"/>
+											<Input id="COMPONENT" value="{/ECNData/COMPONENT}" placeholder="詳如附件" maxLength="16"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="零件位置:" width="6em" textAlign="Begin"/>
+											<Input id="PARTLOCATION" value="{/ECNData/PARTLOCATION}" placeholder="詳如附件"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="ECN前料號:" width="6em" textAlign="Begin"/>
+											<Input id="ECNMATERIAL1" value="{/ECNData/ECNMATERIAL1}" placeholder="詳如附件" maxLength="16"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="ECN後料號:" width="6em" textAlign="Begin"/>
+											<Input id="ECNMATERIAL2" value="{/ECNData/ECNMATERIAL2}" placeholder="詳如附件" maxLength="16"/>
+										</l:HorizontalLayout>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement>
+									<f:fields>
+										<l:HorizontalLayout>
+											<Text text="數量:" width="6em" textAlign="Begin"/>
+											<Input id="QUANTITY1" value="{/ECNData/QUANTITY1}" placeholder="詳如附件"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="處理方式:" width="6em" textAlign="Begin"/>
+											<ActionSelect id="PROCESSINGWAY1" selectedKey="{/ECNData/PROCESSINGWAY1}" width="11em">
+												<items>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="" key=""/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="A:ADD" key="A:ADD"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="C:CHA" key="C:CHA"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="D:DEL" key="D:DEL"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="X" key="X"/>
+												</items>
+											</ActionSelect>
+											<!--<Input id="PROCESSINGWAY1" value="{/ECNData/PROCESSINGWAY1}"/>-->
+										</l:HorizontalLayout>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+				<f:Form editable="true" title="現存品處理">
+					<f:layout>
+						<f:ResponsiveGridLayout labelSpanL="3" labelSpanM="3" emptySpanL="0" emptySpanM="0" columnsL="3" columnsM="2"/>
+					</f:layout>
+					<f:formContainers>
+						<f:FormContainer>
+							<f:formElements>
+								<f:FormElement>
+									<f:fields>
+										<l:HorizontalLayout>
+											<Text text="料號:" width="6em" textAlign="Begin"/>
+											<Input id="MATERIAL" value="{/ECNData/MATERIAL}" placeholder="詳如附件" maxLength="16"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="倉別:" width="6em" textAlign="Begin"/>
+											<ActionSelect id="WAREHOUSE" selectedKey="{/ECNData/WAREHOUSE}" width="11em">
+												<items>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="" key=""/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="A:可用品" key="A:可用品"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="B：待處理" key="B：待處理"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="C：在製品" key="C：在製品"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="D：已出貨" key="D：已出貨"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="E：成品" key="E：成品"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="F：暫收待驗" key="F：暫收待驗"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="G：採購未交" key="G：採購未交"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="H：請購未定" key="H：請購未定"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="X" key="X"/>
+												</items>
+											</ActionSelect>
+											<!--		<Input id="WAREHOUSE" value="{/ECNData/WAREHOUSE}"/>-->
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="數量:" width="6em" textAlign="Begin"/>
+											<Input id="QUANTITY2" value="{/ECNData/QUANTITY2}" placeholder="詳如附件"/>
+										</l:HorizontalLayout>
+										<l:HorizontalLayout>
+											<Text text="處理方式:" width="6em" textAlign="Begin"/>
+											<ActionSelect id="PROCESSINGWAY2" selectedKey="{/ECNData/PROCESSINGWAY2}" width="11em">
+												<items>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="" key=""/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="U：用完為止" key="U：用完為止"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="T：退貨" key="T：退貨"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="R：重工" key="R：重工"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="S：報廢" key="S：報廢"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="I:立即變更" key="I:立即變更"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="N：不處理" key="N：不處理"/>
+													<sap.ui.core:ListItem xmlns:sap.ui.core="sap.ui.core" text="D：其他說明" key="D：其他說明"/>
+												</items>
+											</ActionSelect>
+											<!--<Input id="PROCESSINGWAY2" value="{/ECNData/PROCESSINGWAY2}"/>-->
+										</l:HorizontalLayout>
+									</f:fields>
+								</f:FormElement>
+								<f:FormElement>
+									<f:fields>
+										<l:HorizontalLayout>
+											<Text text="其他說明" class="sapUiTinyMarginTop" width="6em"/>
+											<TextArea id="OINSTRUCTIONS" value="{/ECNData/OINSTRUCTIONS}" showExceededText="true" maxLength="200" width="20em"/>
+										</l:HorizontalLayout>
+									</f:fields>
+								</f:FormElement>
+							</f:formElements>
+						</f:FormContainer>
+					</f:formContainers>
+				</f:Form>
+				<Table id="ECNITEM" inset="false" items="{ path: '/ECNLIST'}" class="sapFDynamicPageAlignContent" width="auto" mode="MultiSelect"
+					busyIndicatorDelay="10" growing="true" growingScrollToLoad="true">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Title text="ECN清單" level="H2"/>
+							<ToolbarSpacer/>
+							<Button id="addButton" icon="sap-icon://add" type="Transparent" press="onAdd" visible="{/FiledEdit/edit1}"/>
+							<Button id="lessButton" icon="sap-icon://less" type="Transparent" press="onLess" visible="{/FiledEdit/edit1}"/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column hAlign="Begin">
+							<Text text="組件料號"/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="零件位置"/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="ECN前料號"/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="ECN后料號 "/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="數量1"/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="處理方式1"/>
+						</Column>
+						<Column hAlign="Begin" minScreenWidth="3840px" demandPopin="true" popinDisplay="Inline">
+							<Text text="料號"/>
+						</Column>
+						<Column hAlign="Begin" minScreenWidth="3840px" demandPopin="true" popinDisplay="Inline">
+							<Text text="倉別"/>
+						</Column>
+						<Column hAlign="Begin" minScreenWidth="3840px" demandPopin="true" popinDisplay="Inline">
+							<Text text="數量2"/>
+						</Column>
+						<Column hAlign="Begin" minScreenWidth="3840px" demandPopin="true" popinDisplay="Inline">
+							<Text text="處理方式2"/>
+						</Column>
+						<Column hAlign="Begin" minScreenWidth="3840px" demandPopin="true" popinDisplay="Inline">
+							<Text text="其他說明"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{COMPONENT}"/>
+								<Text text="{PARTLOCATION}"/>
+								<Text text="{ECNMATERIAL1}"/>
+								<Text text="{ECNMATERIAL2}"/>
+								<Text text="{QUANTITY1}"/>
+								<Text text="{PROCESSINGWAY1}"/>
+								<Text text="{MATERIAL}"/>
+								<Text text="{WAREHOUSE}"/>
+								<Text text="{QUANTITY2}"/>
+								<Text text="{PROCESSINGWAY2}"/>
+								<Text text="{OINSTRUCTIONS}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<UploadCollection id="UploadCollectionAttach" multiple="true" change="onChange" fileDeleted="onFileDeleted" fileType="{fileTypes>/selected}"
+					selectionChange="onSelectionChange" typeMissmatch="onTypeMissmatch" uploadComplete="onUploadComplete"
+					beforeUploadStarts="onBeforeUploadStarts" uploadTerminated="onUploadTerminated" items="{Attach>DocumentInfoRecordToAttachmentNavigation}"
+					showSeparators="{settings>/showSeparators}" uploadEnabled="true" mode="{settings>/mode}" instantUpload="false"
+					uploadUrl="/destinations/WT_S4HC/API_CV_ATTACHMENT_SRV/AttachmentContentSet">
+					<items>
+						<UploadCollectionItem documentId="{Attach>ArchiveDocumentID}" fileName="{Attach>FileName}" mimeType="{Attach>MimeType}"
+							url="{path:'Attach>__metadata/media_src',formatter:'.getMediaUrl'}" enableEdit="{settings>/enableEdit}"
+							enableDelete="{settings>/enableDelete}" visibleDelete="{settings>/visibleDelete}" visibleEdit="{settings>/visibleEdit}"
+							deletePress="ondeletePress"></UploadCollectionItem>
+					</items>
+				</UploadCollection>
+			</content>
+			<footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button text="保存" id="butSave" type="Accept" press="handleSave" width="6rem"/>
+					<Button text="列印" id="butSend" type="Accept" press="handlePrint" width="6rem"/>
+				</OverflowToolbar>
+			</footer>
+		</Page>
+	</App>
+</mvc:View>
